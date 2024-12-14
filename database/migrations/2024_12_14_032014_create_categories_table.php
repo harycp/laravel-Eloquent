@@ -12,7 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('categories', function (Blueprint $table) {
-            $table->id();
+            $table->string('id', 100)->nullable(false)->primary();
+            $table->string('name', 100)->nullable(false);
+            $table->string('description', 100)->nullable(true);
             $table->timestamps();
         });
     }
