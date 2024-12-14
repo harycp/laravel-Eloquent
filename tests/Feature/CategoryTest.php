@@ -6,10 +6,11 @@ use Tests\TestCase;
 use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Database\Seeders\CategorySeeder;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Crypt;
-use Illuminate\Support\Facades\Log;
 
 class CategoryTest extends TestCase
 {
@@ -55,4 +56,16 @@ class CategoryTest extends TestCase
 
         $this->assertDatabaseCount('categories', 10);
     }
+
+    public function testFind()
+    {
+        $this->seed(CategorySeeder::class);
+
+        $category = Category::get()->first();
+        $FIND = Category::find('TEST-2');
+
+        self::assertNotNull($FIND);
+        Log::info(json_encode($FIND));
+        Log::info(json_encode($category));
+    }   
 }
