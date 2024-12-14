@@ -143,5 +143,21 @@ class CategoryTest extends TestCase
         $total = Category::where("description", "UPDATED BROSKI")->count();
         self::assertEquals(10, $total);
     }
+
+    public function testDelete()
+    {
+        $this->seed(CategorySeeder::class);
+
+        $category = Category::find('TEST-2');
+        if(empty($category)){
+            self::fail("category not found");
+        }else{
+            $result = $category->delete();
+            self::assertEquals(true, $result);
+
+            $total = Category::get()->count();
+            self::assertEquals(10, $total);
+        }
+    }
 }
 
