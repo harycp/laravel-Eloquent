@@ -86,4 +86,20 @@ class CategoryTest extends TestCase
         self::assertEquals(true, $result);
 
     }
+    
+    public function testSelect()
+    {
+        // kita tetap menggunakan query builder jika ingin mengambil data lebih dari satu
+
+        for($i=0; $i < 10; $i++){
+            $category = new Category();
+            $category->id = Str::uuid();
+            $category->name = "Category $i";
+            $category->save();
+        }
+
+        $categories = Category::whereNull('description')->get();
+        self::assertCount(10, $categories);
+        Log::info(json_encode($categories));
+    }
 }
