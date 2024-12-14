@@ -118,9 +118,30 @@ class CategoryTest extends TestCase
         $categories = Category::whereNull('description')->select('id', 'name')->get();
         $categories->each(function ($cat){
             $cat->description = "UP BROS";
-            $cat->save();
+            $cat->update();
         });
         self::assertCount(10, $categories);
         Log::info(json_encode($categories));
     }
+
+    public function testUpdateMany()
+    {
+        for($i=0; $i < 10; $i++){
+            $category = new Category();
+            $category->id = Str::uuid();
+            $category->name = "Category $i";
+            $category->save();
+        }
+
+        $result = Category::whereNull('description')
+                ->update([
+                    "description" => "UPDATED BROSKI"
+                ]);
+        
+        self::assertNotNull($result);
+
+        $total = Category::where("description", "UPDATED BROSKI")->count();
+        self::assertEquals(10, $total);
+    }
 }
+
