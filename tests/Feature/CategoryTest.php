@@ -40,4 +40,19 @@ class CategoryTest extends TestCase
             'name' => $category->name,
         ]);
     }
+
+    public function testInsertManyCategories()
+    {
+        $categories = [];
+        for($i = 0; $i < 10; $i++){
+            $categories[] = [
+                'id' => Str::uuid(),
+                'name' => "GAWAI $i",
+            ];
+        }
+
+        Category::query()->insert($categories);
+
+        $this->assertDatabaseCount('categories', 10);
+    }
 }
