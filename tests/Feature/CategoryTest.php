@@ -67,5 +67,23 @@ class CategoryTest extends TestCase
         self::assertNotNull($FIND);
         Log::info(json_encode($FIND));
         Log::info(json_encode($category));
-    }   
+    }
+
+    public function testUpdate()
+    {
+        $this->seed(CategorySeeder::class);
+        $category = Category::find('TEST-2');
+
+        if(empty($category)){
+            self::fail("category not found");
+        }
+
+        $category->name = "IPAD 9 PRO";
+        $category->id = "GAD-90";
+        // $category->save(); bisa ini
+        $result = $category->update(); // bisa ini juga
+
+        self::assertEquals(true, $result);
+
+    }
 }
