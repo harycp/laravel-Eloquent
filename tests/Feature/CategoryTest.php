@@ -101,5 +101,26 @@ class CategoryTest extends TestCase
         $categories = Category::whereNull('description')->get();
         self::assertCount(10, $categories);
         Log::info(json_encode($categories));
+
+        $selectCate = Category::select('id', 'name')->get();
+        Log::info(json_encode($selectCate));
+    }
+
+    public function testUpdateSelect()
+    {
+        for($i=0; $i < 10; $i++){
+            $category = new Category();
+            $category->id = Str::uuid();
+            $category->name = "Category $i";
+            $category->save();
+        }
+
+        $categories = Category::whereNull('description')->select('id', 'name')->get();
+        $categories->each(function ($cat){
+            $cat->description = "UP BROS";
+            $cat->save();
+        });
+        self::assertCount(10, $categories);
+        Log::info(json_encode($categories));
     }
 }
