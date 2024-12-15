@@ -32,8 +32,16 @@ class UuidTest extends TestCase
         $voucher = new Voucher();
         $voucher->name = "Sebelas-maret";
         $voucher->discount = "20%";
-        $result = $voucher->save();
+        $voucher->save();
 
-        self::assertNotNull($result);
+        $findVoucher = Voucher::find($voucher->id);
+        $findVoucher->voucher_code = "HALO HALO TES UPDATED AT";
+        $findVoucher->update();
+        self::assertNotNull($findVoucher->id);
+
+        self::assertNotNull($voucher->id);
+        self::assertNotNull($voucher->voucher_code);
     }
+
+
 }
