@@ -39,5 +39,17 @@ class TimesStampTest extends TestCase
         Log::info(json_encode($result));
         self::assertEquals(true, $result);
 
+
+    }
+
+    public function testDefaulValue()
+    {
+        $comment  = new Comment();
+        $comment->username = "Elio1";
+        $comment->email = "oHt7i@exale.com";
+        $comment->comment = "Mantap!";
+        $comment->save();
+
+        self::assertNotNull($comment->title);
     }
 }

@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->increments('id')->nullable(false)->primary();
+            $table->string('title', 100)->nullable(false);
             $table->string('username', 200)->nullable(false);
             $table->string('email', 200)->nullable(false);
             $table->text('comment')->nullable(true);
