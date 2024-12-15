@@ -179,5 +179,10 @@ class CategoryTest extends TestCase
         $total = Category::get()->count();
         self::assertEquals(0, $total);
     }
+
+    public function testUUID()
+    {
+        
+    }
 }
 
