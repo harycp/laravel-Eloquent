@@ -9,7 +9,6 @@ class Comment extends Model
     protected $table = "comments";
     protected $primaryKey = "id";
     protected $keyType = "int";
-    public $incrementing = true;
     public $timestamps = true;
 
     protected $attributes = [
