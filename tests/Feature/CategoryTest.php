@@ -202,6 +202,22 @@ class CategoryTest extends TestCase
         Log::info(json_encode($result));
     }
 
-    
+    public function testCreate()
+    {
+        $result = [
+            "id" => "FAD-90",
+            "name" => "Food",
+            "description" => "Food Estate"
+        ];
+
+        // akan langsung tersimpan kedatabase saat menggunakan create
+        $result = Category::create($result);
+
+        self::assertNotNull($result->id);
+
+        Log::info(json_encode($result));
+
+    }
+
 }
 
