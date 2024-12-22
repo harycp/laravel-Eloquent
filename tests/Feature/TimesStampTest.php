@@ -39,7 +39,6 @@ class TimesStampTest extends TestCase
         Log::info(json_encode($result));
         self::assertEquals(true, $result);
 
-
     }
 
     public function testDefaulValue()

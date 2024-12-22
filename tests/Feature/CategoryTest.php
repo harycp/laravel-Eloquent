@@ -184,5 +184,22 @@ class CategoryTest extends TestCase
     {
         
     }
+
+    public function testInsert()
+    {
+        // Asosiative array
+        $data = [
+            "id" => "FAD-90",
+            "name" => "Food",
+            "description" => "Food Estate"
+        ];
+
+        $result = new Category($data);
+        $result->save();
+
+        self::assertNotNull($result->id);
+
+        Log::info(json_encode($result));
+    }
 }
 
