@@ -10,8 +10,6 @@ class Comment extends Model
     protected $primaryKey = "id";
     protected $keyType = "int";
     public $timestamps = true;
-
-
     protected $attributes = [
         "title" => "Comment Author"
     ];
