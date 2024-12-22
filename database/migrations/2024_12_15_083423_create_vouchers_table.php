@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name')->nullable(false);
             $table->string('discount')->nullable(false);
             $table->string('voucher_code')->nullable(false);
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -26,5 +27,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('vouchers');
+        Schema::table('vouchers', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
     }
 };
