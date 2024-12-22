@@ -219,5 +219,23 @@ class CategoryTest extends TestCase
 
     }
 
+    public function testManyUpdate()
+    {
+        $this->seed(CategorySeeder::class);
+
+        $request = [
+            "id" => "DATA UPDATED",
+            "name" => "DATA UPDATED",
+            "description" => "DATA UPDATED"
+        ];
+
+        $category = Category::find("TEST-2");
+        $category->fill($request);
+        $category->save();
+
+        self::assertEquals($category->id, "DATA UPDATED");
+        Log::info(json_encode($category));
+    }
+
 }
 
