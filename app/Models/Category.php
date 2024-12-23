@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Scopes\IsActiveScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -19,4 +20,10 @@ class Category extends Model
         "name",
         "description"
     ];
+
+    protected static function booted()
+    {
+        parent::booted();
+        self::addGlobalScope(new IsActiveScope());
+    }
 }
