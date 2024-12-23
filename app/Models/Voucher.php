@@ -19,4 +19,9 @@ class Voucher extends Model
     {
         return [$this->primaryKey, "voucher_code"];
     }
+
+    protected $fillable = [
+        "name",
+        "discount",
+    ];
 }

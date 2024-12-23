@@ -3,8 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\Voucher;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class VoucherSeeder extends Seeder
 {
@@ -13,11 +14,14 @@ class VoucherSeeder extends Seeder
      */
     public function run(): void
     {
-        $voucher = new Voucher();
-
-        $voucher->name = "Sebelas";
-        $voucher->discount = "11%";
-        $voucher->voucher_code = "SEBELAS-11";
-        $voucher->save();
+        for($i = 0; $i < 4; $i++){
+            $result[] = [
+                "id" => Str::uuid(),
+                "name" => "Voucher $i",
+                "discount" => 10,
+                "voucher_code" => Str::random(10)
+            ];
+        }
+        Voucher::insert($result);
     }
 }
