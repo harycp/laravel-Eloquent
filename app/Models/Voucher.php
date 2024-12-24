@@ -24,4 +24,14 @@ class Voucher extends Model
         "name",
         "discount",
     ];
+
+    public function scopeActive($query)
+    {
+        return $query->where("is_active", true);
+    }
+
+    public function scopeNonActive($query)
+    {
+        return $query->where('is_active', false);
+    }
 }
